@@ -16,6 +16,6 @@ export class HtmlTimeTableController {
       `${curse}/${grope}`,
       spec,
     );
-    return `${a.firstChild.rawText}${a.childNodes[1].rawText}`;
+    return `${a.week1.firstChild.rawText}---------------------------------------------------------------------------------------------------------------------------------------------${a.week2.childNodes[0].rawText}`;
   }
 }
