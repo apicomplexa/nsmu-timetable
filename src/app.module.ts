@@ -1,10 +1,12 @@
 import { Module } from '@nestjs/common';
 import { HtmlTimeTableController } from './html_timetable_parser/parser.controller';
+import { JSONController } from './json_time_table/json_tt.controller';
 import { HtmlTimeTableService } from './html_timetable_parser/parser.service';
+import { JsonTimetableService } from './json_time_table/json_tt.service';
 
 @Module({
   imports: [],
-  controllers: [HtmlTimeTableController],
-  providers: [HtmlTimeTableService],
+  controllers: [HtmlTimeTableController, JSONController],
+  providers: [HtmlTimeTableService, JsonTimetableService],
 })
 export class AppModule {}

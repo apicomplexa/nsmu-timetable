@@ -11,24 +11,19 @@ export class HtmlTimeTableService {
     week: number,
   ): Promise<HTMLElement> {
     const { statusCode, headers, trailers, body } = await request(
-      `http://ruz.nsmu.ru/?week=${week}&group=${grope}&spec=${spec}#metka`,
+      `http://ruz.nsmu.ru/?week=${week}&group=${grope}&spec=${spec}`,
     );
     if (statusCode >= 200 && statusCode < 300) {
-      const timetable = parse(await body.text()).querySelector(
-        'body > div.container > div:nth-child(122) > div',
-      );
+      const timetable = parse(await body.text());
       return timetable;
     }
     throw new Error(`status ${statusCode}`);
   }
 
-  async loadHtmlTimeTable(
-    grope: string,
-    spec: string,
-  ): Promise<{ week1: HTMLElement; week2: HTMLElement }> {
-    return {
-      week1: await this.loadHtmlTimeTable4Week(grope, spec, 0),
-      week2: await this.loadHtmlTimeTable4Week(grope, spec, 1),
-    };
+  async loadHtmlTimeTable(grope: string, spec: string): Promise<HTMLElement[]> {
+    return [
+      await this.loadHtmlTimeTable4Week(grope, spec, 0),
+      await this.loadHtmlTimeTable4Week(grope, spec, 1),
+    ];
   }
 }
