@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { HTMLElement } from 'node-html-parser';
-import { HtmlTimeTableService } from 'src/html_timetable_parser/parser.service';
+import { HtmlTimeTableService } from 'src/json_time_table/parser.service';
 import { Lesson, LessonType } from './interface/lesson.interface';
 
 @Injectable()

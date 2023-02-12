@@ -1,5 +1,5 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { HtmlTimeTableService } from 'src/html_timetable_parser/parser.service';
+import { HtmlTimeTableService } from 'src/json_time_table/parser.service';
 import { JsonTimetableService } from 'src/json_time_table/json_tt.service';
 import { IcalService } from './ical.service';
 
@@ -7,7 +7,6 @@ import { IcalService } from './ical.service';
 @Controller('ical')
 class IcalController {
   constructor(
-    private htmlTimetableService: HtmlTimeTableService,
     private jsonTimetableService: JsonTimetableService,
     private icalService: IcalService,
   ) {}
