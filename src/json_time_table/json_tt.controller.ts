@@ -17,13 +17,7 @@ class JSONController {
     @Param('grope') grope: string,
     @Param('spec') spec: string,
   ): Promise<Lesson[]> {
-    const htmlTimetable = await this.htmlTimetableService.loadHtmlTimeTable(
-      `${curse}/${grope}`,
-      spec,
-    );
-    return htmlTimetable
-      .map((weekTt) => this.jsonTimetableService.parseLessons(weekTt))
-      .flat();
+    return await this.jsonTimetableService.JSON_Lessons(curse, grope, spec);
   }
 }
 

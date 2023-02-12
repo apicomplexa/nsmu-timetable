@@ -1,10 +1,25 @@
 import { Injectable } from '@nestjs/common';
-import { HTMLElement, Node } from 'node-html-parser';
+import { HTMLElement } from 'node-html-parser';
+import { HtmlTimeTableService } from 'src/html_timetable_parser/parser.service';
 import { Lesson, LessonType } from './interface/lesson.interface';
 
 @Injectable()
 class JsonTimetableService {
-  parseLessons(weekHTML: HTMLElement): Lesson[] {
+  constructor(private htmlTimetableService: HtmlTimeTableService) {}
+
+  async JSON_Lessons(
+    curse: string,
+    grope: string,
+    spec: string,
+  ): Promise<Lesson[]> {
+    const htmlTimetable = await this.htmlTimetableService.loadHtmlTimeTable(
+      `${curse}/${grope}`,
+      spec,
+    );
+    return htmlTimetable.map((weekTt) => this.parseLessons(weekTt)).flat();
+  }
+
+  private parseLessons(weekHTML: HTMLElement): Lesson[] {
     return weekHTML
       .querySelectorAll(
         'body > div.container > div:nth-child(122) >.row > div > div',
@@ -23,8 +38,8 @@ class JsonTimetableService {
         const auditory = address.match(/&nbsp;(Moodle1|\d*)/m)[1];
         const isOnline = auditory === 'Moodle1';
         return {
-          startTime: new Date(year, month, day, startTime[0], startTime[1]),
-          endTime: new Date(year, month, day, endTime[0], endTime[1]),
+          startTime: new Date(year, month - 1, day, startTime[0], startTime[1]),
+          endTime: new Date(year, month - 1, day, endTime[0], endTime[1]),
           title: title,
           lessonType: lessonType,
           auditory: auditory,
