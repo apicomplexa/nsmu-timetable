@@ -23,7 +23,7 @@ ruz.nsmu.ru/?group=  %D0%9B%D0%941  /  00000000163  &spec=  %D0%9B%D...
 3. Compose link using template below
 
 ```
-https://HERE_WILL_BE_ROOT_DOMAIN_AFTER_DEPLOY/ical/course/group/spec
+https://HERE_WILL_BE_ROOT_DOMAIN_AFTER_DEPLOY/ical/all/course/group/spec
 ```
 
 4. Past this link to your calendar 
