@@ -8,12 +8,12 @@ class JsonTimetableService {
   constructor(private htmlTimetableService: HtmlTimeTableService) {}
 
   async JSON_Lessons(
-    curse: string,
+    course: string,
     grope: string,
     spec: string,
   ): Promise<Lesson[]> {
     const htmlTimetable = await this.htmlTimetableService.loadHtmlTimeTable(
-      `${curse}/${grope}`,
+      `${course}/${grope}`,
       spec,
     );
     return htmlTimetable.map((weekTt) => this.parseLessons(weekTt)).flat();

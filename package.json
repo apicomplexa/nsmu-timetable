@@ -1,8 +1,8 @@
 {
   "name": "nsmu-timetable",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "Server code on Nest.js parsing lessons timetable from NSMU and converting its to iCalendar format for automatic import to other calendars (like Google Calendar)",
+  "author": "apicomplexa",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {

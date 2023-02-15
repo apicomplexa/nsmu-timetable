@@ -1,73 +1,62 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Description
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+> Server code on Nest.js parsing lessons timetable from NSMU [site](http://ruz.nsmu.ru) and converting its to iCalendar format for automatic import to other calendars (like Google Calendar)
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+⚠️ It's __unofficial__ project! I doesn't receive any support form NSMU so there is potential ban rick (cause i parse there html site without permission)
 
-## Description
+# Usage
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+1. Copy link to your timetable from official [site](http://ruz.nsmu.ru)
 
-## Installation
+```
+http://ruz.nsmu.ru/?group=%D0%9B%D0%941/00000000163&spec=%D0%9B%D0%B5%D1%87%D0%B5%D0%B1%D0%BD%D0%BE%D0%B5%20%D0%B4%D0%B5%D0%BB%D0%BE#metka
 
-```bash
-$ npm install
 ```
 
-## Running the app
+2. Find course code, group code and spec:
 
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+```
+                    |----course---|   |---group---|        |--spec--...
+ruz.nsmu.ru/?group=  %D0%9B%D0%941  /  00000000163  &spec=  %D0%9B%D...
 ```
 
-## Test
+3. Compose link using template below
 
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+```
+https://HERE_WILL_BE_ROOT_DOMAIN_AFTER_DEPLOY/ical/course/group/spec
 ```
 
-## Support
+4. Past this link to your calendar 
+    
+    - [Google Calendar](https://support.google.com/calendar/answer/37100?hl=en&co=GENIE.Platform%3DDesktop#:~:text=Use%20a%20link%20to%20add%20a%20public%20calendar) [[RUS](https://support.google.com/calendar/answer/37100?hl=ru&co=GENIE.Platform%3DDesktop#:~:text=%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%BE%D0%B1%D1%89%D0%B5%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D0%BD%D1%8B%D0%B9%20%D0%BA%D0%B0%D0%BB%D0%B5%D0%BD%D0%B4%D0%B0%D1%80%D1%8C%20%D0%BF%D0%BE%20%D1%81%D1%81%D1%8B%D0%BB%D0%BA%D0%B5)]
+    - [Apple Calendar](https://support.apple.com/guide/calendar/subscribe-to-calendars-icl1022/11.0/mac/13.0) [[RUS](https://support.apple.com/ru-ru/guide/calendar/icl1022/11.0/mac/13.0)]
+    - Other calendars should have same functionality try to google
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
-## Stay in touch
+# Plans
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- [ ] Test server
+- [ ] Telegram bot or web app for autoconverting links 
 
-## License
+# JSON Api
 
-Nest is [MIT licensed](LICENSE).
+JSON Get Api is provided by this server on subdomain `https://ROOT_DOMAIN/json/curse/grope/spec`
+
+```typescript
+interface Lesson {
+  startTime: Date;
+  endTime: Date;
+  title: string;
+  auditory: string;
+  location: string;
+  lessonType: LessonType;
+  isOnline: boolean;
+}
+enum LessonType {
+  practice = 'Practice',
+  sem = 'Seminar',
+  lection = 'Lection',
+  lab = 'Laboratory work',
+  unknown = 'Unknown',
+}
+```

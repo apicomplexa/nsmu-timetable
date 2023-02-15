@@ -8,13 +8,13 @@ import { HtmlTimeTableService } from './parser.service';
 class JSONController {
   constructor(private jsonTimetableService: JsonTimetableService) {}
 
-  @Get(':curse/:grope/:spec')
+  @Get(':course/:grope/:spec')
   async parseHtmlTimeTable(
-    @Param('curse') curse: string,
+    @Param('course') course: string,
     @Param('grope') grope: string,
     @Param('spec') spec: string,
   ): Promise<Lesson[]> {
-    return await this.jsonTimetableService.JSON_Lessons(curse, grope, spec);
+    return await this.jsonTimetableService.JSON_Lessons(course, grope, spec);
   }
 }
 

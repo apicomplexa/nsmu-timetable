@@ -18,7 +18,7 @@ class IcalService {
           lesson.lessonType,
           lesson.isOnline,
         )} ${lesson.title}`,
-        location: `Ауд. ${lesson.auditory}   \n${lesson.location}`,
+        location: lesson.location,
       });
     });
     return calendar.toString();

@@ -11,14 +11,14 @@ class IcalController {
     private icalService: IcalService,
   ) {}
 
-  @Get('all/:curse/:grope/:spec/')
+  @Get('all/:course/:grope/:spec/')
   async allLessonsTimetable(
-    @Param('curse') curse: string,
+    @Param('course') course: string,
     @Param('grope') grope: string,
     @Param('spec') spec: string,
   ): Promise<string> {
     const jsonTt = await this.jsonTimetableService.JSON_Lessons(
-      curse,
+      course,
       grope,
       spec,
     );
