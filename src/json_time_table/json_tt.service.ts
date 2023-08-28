@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { SrvRecord } from 'dns';
 import { HTMLElement } from 'node-html-parser';
 import { HtmlTimeTableService } from 'src/json_time_table/parser.service';
 import { Lesson, LessonType } from './interface/lesson.interface';
@@ -23,7 +22,7 @@ class JsonTimetableService {
   private parseLessons(weekHTML: HTMLElement): Lesson[] {
     return weekHTML
       .querySelectorAll(
-        'body > div.container > div:nth-child(122) >.row > div > div',
+        'body > div.container > div:nth-child(123) >.row > div > div',
       )
       .map((dayHTML) => {
         const { startDateTime, endDateTime } = this.parseDateTime(dayHTML);
