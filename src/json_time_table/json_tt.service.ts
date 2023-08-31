@@ -22,7 +22,7 @@ class JsonTimetableService {
   private parseLessons(weekHTML: HTMLElement): Lesson[] {
     return weekHTML
       .querySelectorAll(
-        'body > div.container > div:nth-child(123) >.row > div > div',
+        'body > div.container > div:nth-child(122) >.row > div > div',
       )
       .map((dayHTML) => {
         const { startDateTime, endDateTime } = this.parseDateTime(dayHTML);
@@ -107,7 +107,6 @@ class JsonTimetableService {
   }
 
   private defineLessonType(lessonTypeStr: string) {
-    let lessonType: LessonType;
     switch (lessonTypeStr) {
       case 'Лекция':
         return LessonType.lection;
