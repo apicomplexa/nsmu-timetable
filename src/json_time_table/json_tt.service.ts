@@ -20,31 +20,38 @@ class JsonTimetableService {
   }
 
   private parseLessons(weekHTML: HTMLElement): Lesson[] {
-    return weekHTML
-      .querySelectorAll(
-        'body > div.container > div:nth-child(122) >.row > div > div',
-      )
-      .map((dayHTML) => {
-        const { startDateTime, endDateTime } = this.parseDateTime(dayHTML);
-        const { lessonType, title } = this.parseTitleAndType(dayHTML);
+    const selectorWithDivPosition = (position: number) => {
+      return `body > div.container > div:nth-child(${position}) >.row > div > div`;
+    };
+    let lessonsContainers = weekHTML.querySelectorAll(
+      selectorWithDivPosition(122),
+    );
+    if (lessonsContainers.length === 0) {
+      lessonsContainers = weekHTML.querySelectorAll(
+        selectorWithDivPosition(123),
+      );
+    }
+    return lessonsContainers.map((dayHTML) => {
+      const { startDateTime, endDateTime } = this.parseDateTime(dayHTML);
+      const { lessonType, title } = this.parseTitleAndType(dayHTML);
 
-        const address = this.cleanLabelFromSpaces(
-          dayHTML.childNodes[6].innerText,
-        ).replace('Уч. ауд. №', 'Aуд №');
+      const address = this.cleanLabelFromSpaces(
+        dayHTML.childNodes[6].innerText,
+      ).replace('Уч. ауд. №', 'Aуд №');
 
-        const auditory = address.match(/&nbsp;(Moodle1|\d*)/m)[1];
-        const isOnline = auditory === 'Moodle1';
+      const auditory = address.match(/&nbsp;(Moodle1|\d*)/m)[1];
+      const isOnline = auditory === 'Moodle1';
 
-        return {
-          startTime: startDateTime,
-          endTime: endDateTime,
-          title: title,
-          lessonType: lessonType,
-          auditory: auditory,
-          location: address.replace('&nbsp;', ''),
-          isOnline: isOnline,
-        };
-      });
+      return {
+        startTime: startDateTime,
+        endTime: endDateTime,
+        title: title,
+        lessonType: lessonType,
+        auditory: auditory,
+        location: address.replace('&nbsp;', ''),
+        isOnline: isOnline,
+      };
+    });
   }
 
   private parseTitleAndType(dayHTML: HTMLElement): {
