@@ -23,14 +23,43 @@ class JsonTimetableService {
     const selectorWithDivPosition = (position: number) => {
       return `body > div.container > div:nth-child(${position}) >.row > div > div`;
     };
-    let lessonsContainers = weekHTML.querySelectorAll(
-      selectorWithDivPosition(122),
-    );
-    if (lessonsContainers.length === 0) {
+    let lessonsContainers = [];
+    let divPosition = 120;
+    while (lessonsContainers.length === 0 && divPosition <= 130) {
       lessonsContainers = weekHTML.querySelectorAll(
-        selectorWithDivPosition(123),
+        selectorWithDivPosition(divPosition),
       );
+      divPosition += 1;
     }
+    if (divPosition > 130) {
+      const today = new Date();
+      const startTime = new Date(
+        today.getFullYear(),
+        today.getMonth(),
+        today.getDay(),
+        9,
+        0,
+      );
+      const endTime = new Date(
+        today.getFullYear(),
+        today.getMonth(),
+        today.getDay(),
+        9,
+        0,
+      );
+      return [
+        {
+          startTime: startTime,
+          endTime: endTime,
+          title: 'Сайт СГМУ опять сломался',
+          lessonType: LessonType.unknown,
+          auditory: '',
+          location: '',
+          isOnline: false,
+        },
+      ];
+    }
+
     return lessonsContainers.map((dayHTML) => {
       const { startDateTime, endDateTime } = this.parseDateTime(dayHTML);
       const { lessonType, title } = this.parseTitleAndType(dayHTML);
