@@ -3,6 +3,7 @@ enum LessonType {
   sem = 'Seminar',
   lection = 'Lection',
   lab = 'Laboratory work',
+  clin = 'Clinical Pactice',
   unknown = 'Unknown',
 }
 

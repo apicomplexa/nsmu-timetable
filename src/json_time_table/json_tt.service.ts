@@ -68,8 +68,8 @@ class JsonTimetableService {
         dayHTML.childNodes[6].innerText,
       ).replace('Уч. ауд. №', 'Aуд №');
 
-      const auditory = address.match(/&nbsp;(Moodle1|\d*)/m)[1];
-      const isOnline = auditory === 'Moodle1';
+      const auditory = address.match(/&nbsp;(Moodle|\d*)/m)[1];
+      const isOnline = auditory === 'Moodle';
 
       return {
         startTime: startDateTime,
@@ -152,6 +152,8 @@ class JsonTimetableService {
         return LessonType.lab;
       case 'Семинар':
         return LessonType.sem;
+      case 'Клинические практические занятия':
+        return LessonType.clin;
       default:
         return LessonType.unknown;
     }

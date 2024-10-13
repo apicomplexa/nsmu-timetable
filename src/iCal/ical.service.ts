@@ -17,7 +17,7 @@ class IcalService {
         summary: `${this.chooseLessonLogoByType(
           lesson.lessonType,
           lesson.isOnline,
-        )} ${lesson.title}`,
+        )} ${lesson.title} (${lesson.lessonType})`,
         location: lesson.location,
       });
     });
@@ -33,11 +33,13 @@ class IcalService {
       case LessonType.practice:
         return onlineLogo + '📝ПР';
       case LessonType.sem:
-        return onlineLogo + '💁Сем';
+        return onlineLogo + '💁СМ';
       case LessonType.lection:
-        return onlineLogo + '🖍️Лек';
+        return onlineLogo + '🖍️ЛК';
       case LessonType.lab:
         return onlineLogo + '🔬ЛР';
+      case LessonType.clin:
+        return onlineLogo + '🥼КЛ';
       case LessonType.unknown:
         return onlineLogo + '❔';
     }
