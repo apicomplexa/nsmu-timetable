@@ -24,12 +24,12 @@
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
+    "axios": "^1.7.7",
     "ical-generator": "^3.6.1",
     "node-html-parser": "^6.1.4",
     "node-telegram-bot-api": "^0.61.0",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.2.0",
-    "undici": "^5.15.0"
+    "rxjs": "^7.2.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",
